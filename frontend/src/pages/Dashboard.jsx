@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../componants/Navbar";
 import axios from "axios";
-
+const api = import.meta.env.VITE_API_URL
 const Dashboard = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -12,7 +12,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/products",
+        `${api}/products`,
         { name, price },
         {
           headers: {

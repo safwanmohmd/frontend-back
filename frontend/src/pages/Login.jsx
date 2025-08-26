@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+
+const api = import.meta.env.VITE_API_URL
 import { useNavigate } from 'react-router-dom'
 const Login = () => {
 const navigate = useNavigate()
@@ -8,7 +10,7 @@ const navigate = useNavigate()
     const [password,setPassword] = useState('')
 const handleSubmit = async(e)=>{
     e.preventDefault()
-    const res = await axios.post("http://localhost:3000/users/login",{
+    const res = await axios.post(`${api}/users/login`,{
         username,
         password
     })
