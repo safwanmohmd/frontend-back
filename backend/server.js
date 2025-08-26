@@ -8,7 +8,7 @@ import productRouter from './routes/productRoutes.js'
 const app = express()
 import cors from 'cors'
 dotenv.config()
-app.use(cors({origin:"https://frontend-back-mu.vercel.app/"}))
+app.use(cors());
 mongoose.connect(process.env.mongouri).then(
     console.log('connected to mongodb')
 ).then(
