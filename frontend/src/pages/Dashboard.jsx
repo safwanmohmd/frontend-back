@@ -6,7 +6,7 @@ const api = import.meta.env.VITE_API_URL
 const Dashboard = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-
+const [products, setProducts] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,7 +71,7 @@ const Dashboard = () => {
         })}
       </div>
 
-      
+
     </div>
   );
 };
