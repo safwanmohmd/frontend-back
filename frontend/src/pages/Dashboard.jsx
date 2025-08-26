@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../componants/Navbar";
 import axios from "axios";
+import { useEffect } from "react";
 const api = import.meta.env.VITE_API_URL
 const Dashboard = () => {
   const [name, setName] = useState('');
@@ -27,6 +28,21 @@ const Dashboard = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${api}/products`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setProducts(res.data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+
   return (
     <div>
       <Navbar />
@@ -48,6 +64,14 @@ const Dashboard = () => {
         />
         <button type="submit">Submit</button>
       </form>
+
+       <div>
+        {products?.map((x) => {
+          return <p key={x.id}>{x.name}</p>;
+        })}
+      </div>
+
+      
     </div>
   );
 };
